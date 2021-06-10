@@ -1,0 +1,358 @@
+
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APCSA</title>
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="assets/highlight/styles/default.css">
+    <script src="assets/highlight/highlight.pack.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+<body>
+<section id="Top">
+</section>
+<div class="topBox">
+</div>
+
+<div class="grid-container">
+	<div class="grid-x">
+		<div class="cell small-12 large-3" data-magellan data-sticky-contianer data-options="marginTop:0"> <!-- Navigation Bar-->
+				<div data-sticky data-options="marginTop:0;">
+					<div class="title-bar" data-responsive-toggle="table-of-contents" data-hide-for="large" data-sticky>
+						<ul class="vertical dropdown menu" data-dropdown-menu data-toggle="table-of-contents">
+							<li>
+								<a href="#">Menu</a>
+							</li>
+						</ul>				
+					</div>
+					<ul class="menu vertical nested" id="table-of-contents">
+						<li><a href="#inheritance">Big O Notation</a></li>
+						<li><a href="#linear">Linear Time O(n)</a></li>
+						<ul class="menu vertical nested">
+							<li><a href="#wcbcc">Worst-case and Best-case complexities</a></li>
+						</ul>
+						<li><a href="#logarithmic">Logarithmic O(log(n))</a></li>
+						<li><a href="#applications">Applications</a></li>
+						<li><a href="#misc">O(n^2) and O(nlog(n))</a></li>
+					</ul>
+				</div>
+			</div>
+		<div class="cell large-auto"> <!-- main content-->
+			<div class="sections" data-section>
+				<section id="inheritance" data-magellan-target="inheritance">
+					<h2 class="title" data-section-title>Big O Notation</h2>
+					<div class="content" data-section-content>
+						<p>
+							Now that we've learned all these algorithms, you may be wondering which ones are better to use than others?
+							To answer this question, programmers use what's called <em>Big O notation</em>.
+						</p>
+						<p>
+							To understand what Big O notation is, we need to first understand computer operations. 
+							Whenever a bit of code is run that preforms arithmetic operations <code>(+,-,/,*,=)</code> 
+							or comparisons are made <code>(&gt;=,==,&lt;)</code>, we consider this code to take one unit of time (TU) to run. 
+							For example:
+<pre><code>int x = 2;//one unit
+int y = 1+2; //2 units (one addition operation and one = operation)
+if (x==y){} //1 unit (one comparison) 
+</code></pre>
+						</p>
+						<p>
+							Big O Notation gives a rough estimate for how many units of time is required for a given size of input. 
+							To better understand this, let's consider the following example:
+						</p>
+						<p>
+<pre><code>public int m1(int n){
+	return n*(n+1)/2; //returns sum of all positive integers &lt;= n
+}</code></pre>
+						</p>
+						<p>
+							In this code, we see that it takes 3 time units (3 arithmetic operations) to run <i>(4 if we count return as an operation)</i>. 
+							However, in Big O notation, instead of writing that it takes 3 time units, we would write that this algorithm has a time complexity
+							of <code>O(1)</code>. Even if the input <code>n</code> was 10, 50, 100, or even 1000, the algorithm takes 4 time units to run,
+							thus is runs in O(1) time. 
+						</p>
+						<p>
+							<b>Note</b>: even if the algorithm runs in 100 TU, as long as the algorithm runs in constant time 
+							(same number of time units regardless of input size), we say it runs in O(1) time. E.g.:
+<pre><code>return 1+2+3+24+(n==5)//5 TU, still O(1)
+return 2*(3+9*81)/41+234-64/8+11-69//9 TU, still O(1)</code></pre> 
+						</p>
+						<p>
+							The above examples all have O(1) time complexity, even though they run with more than 1 operations. 
+							For any given input, if the algorithm runs in constant time, it runs in O(1).
+						</p>
+						<p>
+							<b>Key take-away:</b>O(1) runs in constant time!
+						</p>
+					</div>
+				</section>
+				<hr />
+				<section id="linear" data-magellan-target="linear">
+					<h2 class="title" data-section-title>Linear <small>O(n)</small></h2>
+					<div class="content" data-section-content>
+						<p>
+							So do all algorithms run in O(1)? The answer is, of course, no. Consider the following:
+<pre><code>public int m1(int n){
+	int res=0; //1 TU 
+	for (int i=1 /*1 TU*/; i&lt;=n /*1 TU*/; i++ /*1 TU*/){
+		res+=i; //2 TU
+	}
+	return res;
+}</code></pre>
+						</p>
+						<p>
+							When <code>n == 0</code>, this algorithm will take <code>1 + 1 + 1 = 3</code> time units 
+							(1 TU in line 1 and 2 TU in the first 2 statements of the for loop). 
+						</p>
+						<p>
+							As we increase n, the number of time units increases. 
+							For example, when <code>n == 1</code>, the algorithm runs in 7 TU
+							(1 in line 1, 1 for initialization statement in the for loop, 4 TU per iteration of the for loop, 
+							and 1 TU to check the exit condition of the foor loop). 
+							When <code>n == 2</code>, 11 TU are used. 15 for <code>n == 3</code>, and so on. 
+						</p>
+						<p>
+							We see that for any given value for <code>n</code>, the required time units <code>(T)</code>can be represented as:
+							<pre><code>T = 4n+3</code></pre>
+							In other words, as we increase n, the time required to run by the algorithm increases linearly. 
+							We consider all these types of algorithms to run in <b>O(n)</b> time complexity. 
+						</p>
+						<p>
+							For example, the following code examples all run in O(n):
+<pre><code>public int linearSearch(int[] arr, int target){
+	for (int i=0 /*1 TU*/; i&lt;arr.length /*1 TU*/; i++ /*1 TU*/){
+		if (arr[i] == target) { // 2 TU (1 for accessing element of an array, 1 for comparison)
+			return i;
+		}
+	}
+	return -1;
+	// T = 4n+2, which is O(n) (where n is the length of arr)
+}
+public void reverse(int[] arr){
+	int l=0; //1 TU
+	int r=arr.length-1; //3 TU (1 for array attribute access, 1 for subtraction operation, and 1 for assignment operation)
+	while (l&lt;r){ //1 TU for comparison
+		int temp=arr[l]; //2 TU (array access + assignment)
+		arr[l] = arr[r]; //3 TU (2 array accesses + 1 assignemnt)
+		arr[r] = temp; //2 TU (array access + assignment)
+		++l; --r; //2 TU (2 arithmetic operations)
+	}
+	/* Each loop runs in 10 operations
+	 * Add the 4 intial TU in lines 1 and 2, and the final comparison to end the loop is 5 TU
+	 * T = 10n + 4 
+	 *   = O(n)
+	*/
+}</code></pre>
+						</p>
+						<section id="wcbcc" data-magellan-target="wcbcc">
+							<h3 class="title" data-section-title>Worst-case and best-case time complexities</h3>
+							<div class="content" data-section-content>
+								<p>
+									In the previously coded <code>linearSearch(...)</code> algorithm (reproduced below for convenience),
+									notice that the TU required to run the algorithm can differ depending on whether or not we find and element,
+									and where the element is located in <code>arr</code>. 
+<pre><code>public int linearSearch(int[] arr, int target){
+	for (int i=0 /*1 TU*/; i&lt;arr.length /*1 TU*/; i++ /*1 TU*/){
+		if (arr[i] == target) { // 2 TU (1 for accessing element of an array, 1 for comparison)
+			return i;
+		}
+	}
+	return -1;
+	// T = 4n+2, which is O(n) (where n is the length of arr)
+} </code></pre>
+								</p>
+								<p>
+									For example, if the input to the algorithm is as follows:
+<pre><code>arr = {21,420,96,0}, target = 21</code></pre> 
+									Then <code>linearSearch(arr, target)</code> will run in 4 TU, exiting at the first element, 
+									regardless of the length of arr. We call this the <em>best-case</em> time-complexity, meaning the smallest time-complexity possible. 
+									In this case, we have a time-complexity of <b>best-case: O(1)</b>. 
+									However, the worst-case would be that <code>target</code> does not exist in <code>arr</code>. E.g.:
+<pre><code>arr = {21,420,96,0}, target = 1738</code></pre> 
+									In this case, the algorithm would run through all elements of <code>arr</code>, taking O(n) time, before returning -1.
+									This is called the <em>worst-case</em> time-complexity, which would be <b>O(n)</b> for this example. 
+								</p>
+								<p>
+									When comparing algorithms, we <em>care most about the <b>worst-case</b> time complexity.</em> 
+									When we write algorithms for use in real-life, the algorithm may be run millions of times. 
+									It doesn't matter how fast the best-case scenario is, if the worst-case takes too long, no one will use the algorithm. 
+								</p>
+								<p>
+									<b>Key-takeaway: </b> Time-complexities can vary for best-case and worst-case scenarios. 
+									Analyze algorithms based on their worst-case time-complexity. 
+								</p>
+							</div>
+						</section>
+					</div>
+				</section>
+				<hr />
+				<section id="logarithmic" data-magellan-target="logarithmic">
+					<h2 class="title" data-section-title>Logarithmic <small>O(log(n))</small></h2>
+					<div class="content" data-section-content>
+						<p>
+							Ok, so we have O(n) and O(1) time-complexities. Another type of algorithm is O(log(n)) time. 
+							To understand this complexity, consider the following algorithm:
+<pre><code>public int binarySearch(int[] arr, int target){
+	/*Precondition: arr is sorted from least to greatest*/
+        int l=0, r=arr.length-1; 
+        while (l&lt;=r){ 
+            int m=(l+r)/2; 
+            if (arr[m]==target) return m;
+            if (arr[m]>target) r=m-1; 
+            else l=m+1;
+        }
+        return -1;
+    }
+}</code></pre>
+						</p>
+						<p>
+							In this binary-search algorithm, recall from our previous lesson that each time we iterate the <code>while</code> loop,
+							we eliminate half of the elements in <code>arr</code>, since we know they are either smaller than or larger than target. 
+							For this reason, as we increase the size of <code>arr</code>, the time required to run this algorithm does not increase linearly, 
+							but rather logarithmically. For example, if <code>arr</code> had 1 element, the while loop cycles at most 1 time. 
+							For 2 elements, 1 times. For 3 elements, 2 times. 4 elements = still 2 times. 5 elements = 3 times, and etc. 
+						</p>
+						<p>
+							We notice that the time required is exponent of the nearest power of 2 &gt;= the input size. 
+							For example, the largest power of 2 for 2 elements is 2^1. For 3, the largest power of 2 is 4, which is equal to 2^2, 
+							thus it takes 2 while-loops. Same for 4 elements. For 5, the nearest power of 2 is 8 (2^3), thus it takes 3 cycles. 
+							For these types of algorithms, we say it runs in <b>O(log(n))</b> time. 
+						</p>
+					</div>
+				</section>
+				<hr />
+				<section id="applications" data-magellan-target="applications">
+					<h2 class="title" data-section-title>Applications</h2>
+					<div class="content" data-section-content>
+						<p class="lead">
+							Now we can compare our first algorithms: linear-search and binary-search. 
+						</p>
+						<p>
+							Recall that the worst-case time-complexity for linear-search is O(n). 
+							We have also just established that binary-search runs in O(log(n)) time. 
+							Now, which one is faster? Well, let's consider what happens as we increase the input size,
+							by graphing the equations in Desmos:
+						</p>
+						<div class="responsive-embed widescreen">
+							<iframe src="https://www.desmos.com/calculator/c5z1kuittm" frameborder="0"></iframe>
+						</div>
+						<p>
+							The y-axis represents the required time of the algorithm, and x-axis represents the input-size.
+							The red-line graphs the time to input-size relationship of binary-search algorithm, which runs in O(log(n)) time. 
+							The blue-line graphs the time to input-size relationship of linear-search algorithm, which runs in O(n) time. 
+						</p>
+						<p>
+							We can tell from the graph that O(n) algorithms takes more time to run than O(log(n)) algorithms,
+							especially as we zoom out and look at larger input-sizes. 
+							Since binary-search runs in O(log(n)) time, we conclude that binary-search runs much faster than linear-search. 
+						</p>
+						<p>
+							In general, by graphing various time-complexities, we can compare which ones are better.
+							For example, as seen in the below graph, O(1) is the fastest, followed by O(log(n)) and O(n).
+						</p>
+						<div class="responsive-embed widescreen">
+							<iframe src="https://www.desmos.com/calculator/x7cot4qcqt" frameborder="0"></iframe>
+						</div>
+					</div>
+				</section>
+				<hr />
+				<section id="misc" data-magellan-target="misc">
+					<h2 class="title" data-section-title>Other Complexities <small>O(n^2) and O(nlog(n))</small></h2>
+					<div class="content" data-section-content>
+						<p>
+							Here are a few other time-complexities that can help us analyze some of our sorting algorithms,
+							graphed below in Desmos:
+						</p>
+						<div class="responsive-embed widescreen">
+							<iframe src="https://www.desmos.com/calculator/w0b3zaweos" frameborder="0"></iframe>
+						</div>
+						<h4>Quadratic <small>O(n^2)</small></h4>
+						<p>
+							These are the slowest algorithms amongst the time-complexities we have looked at (black-line on above graph).
+							Examples of O(n^2) algorithms are the bubble-sort (selection-sort) and insertion-sort algorithms we have previously discussed. 
+							For example, consider the following implementation of selection-sort:
+<pre><code>public void sort(int[] arr){
+	int n=arr.length;
+	for (int i=0;i&lt;n;i++){ //O(n) 
+		int smallIndex=i;
+		for (int j=i;j&lt;n;j++){ //O(n)
+			if (arr[smallIndex]>arr[j]) smallIndex=j;
+		}
+		int temp=arr[smallIndex];
+		arr[smallIndex]=arr[i];
+		arr[i]=temp;
+	}
+}</code></pre>
+						</p>
+						<p>
+							In this code, there are 2 for-loops, one nested in the other. The nested for-loop runs in O(n) time. 
+							Since each nested for-loop is run n times, we say it runs in <code>O(n) * O(n)</code> or <code>O(n^2)</code>.
+						</p>
+						<h4>O(nlog(n))</h4>
+						<p>
+							This is a time-complexity commonly seen in sorting-algorithms. Breaking down the complexity, we see that we have an 
+							<code>O(n)</code> algorithm multiplied by an <code>O(log(n))</code> algorithm. For an example of an O(nlog(n)) algorithm,
+							consider the following implementation of merge-sort:
+<pre><code>
+private void helper(int[] arr, int l, int r){
+	if (l>=r-1) return;
+	int m=(l+r)/2; //Divide arr by half each recursive step = O(log(n))
+	helper(arr,l,m);
+	helper(arr,m,r);
+	int[] sortedArr = new int[r-l];
+	int li = l, ri = m, ti=0;
+	while (ti&lt;r-l){ //O(n) time-complexity
+		if (li>=m){
+			sortedArr[ti]=arr[ri++];
+		} else if (ri>=r){
+			sortedArr[ti]=arr[li++];
+		} else{
+			if (arr[li]&lt;arr[ri]){
+				sortedArr[ti]=arr[li++];
+			} else{
+				sortedArr[ti]=arr[ri++];
+			}
+		}
+		++ti;
+	}
+	for (int i=0;i&lt;r-l;i++){
+		arr[i+l] = sortedArr[i];
+	}
+}
+public void mergeSort(int[] arr){
+	helper(arr, 0, arr.length);
+}
+</code></pre>
+						</p>
+						<p>
+							Each time <code>helper(...)</code> is called, it will iterate through all elements between <code>l</code> and <code>r</code>,
+							which takes O(n) time on average. However, unlike in the O(n^2) sorting algorithms, the total number of calls to
+							<code>helper(...)</code> is only O(log(n)) times, since each time we call it, we divide the input-size by 2. 
+							Remember from our binary-search analysis, algorithms that halve the input size each time will take O(log(n)) time to run. 
+							Thus, the time complexity in total is <code>O(log(n))* O(n)</code> = <code>O(nlog(n))</code>
+						</p>
+						<p>
+							Looking at the Desmos graph with all the time-complexities, we see that the O(n^2) time-complexity (black-line) 
+							is much slower than the O(nlog(n)) time-complexity (purple-line). Thus, O(nlog(n)) algorithms such as merge-sort 
+							are significantly better than O(n^2) algorithms such as insertion-sort and selection-sort. 
+						</p>
+					</div>
+				</section>
+			</div>
+		<div>
+	</div>
+</div>
+
+  </div>
+</div>
+
+<div class="bottomBox">
+	<p class="text-center"><a href="#Top">Return to top</a></p>
+</div>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

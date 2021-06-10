@@ -1,0 +1,361 @@
+
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APCSA</title>
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="assets/highlight/styles/default.css">
+    <script src="assets/highlight/highlight.pack.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+<body>
+<section id="Top">
+</section>
+<div class="topBox">
+</div>
+
+<div class="grid-container">
+	<div class="grid-x">
+		<div class="cell small-12 large-3" data-magellan data-sticky-contianer data-options="marginTop:0"> <!-- Navigation Bar-->
+				<div data-sticky data-options="marginTop:0;">
+					<div class="title-bar" data-responsive-toggle="table-of-contents" data-hide-for="large" data-sticky>
+						<ul class="vertical dropdown menu" data-dropdown-menu data-toggle="table-of-contents">
+							<li>
+								<a href="#">Menu</a>
+							</li>
+						</ul>				
+					</div>
+					<ul class="menu vertical nested" id="table-of-contents">
+						<li><a href="#inheritance">Inheritance</a></li>
+						<ul class="menu vertical nested">
+							<li><a href="#concept">Conceptual Overview</a></li>
+							<li><a href="#implementationDetails">Implementation Details</a></li>
+						</ul>
+						<li><a href="#polymorphism">Polymorphism</a></li>
+						<li><a href="#applications">Use Cases</a></li>
+					</ul>
+				</div>
+			</div>
+		<div class="cell large-auto"> <!-- main content-->
+			<div class="sections" data-section>
+				<section id="inheritance" data-magellan-target="inheritance">
+					<h2 class="title" data-section-title>Inheritance</h2>
+					<div class="content" data-section-content>
+						<p>
+							Here's where the course will differ from what you're used to. So far in this course, you have learned specifics. 
+							Things like syntax, methods, datastructures, etc. What we will learn next is more conceptual, 
+							more focused on general coding principles of object oriented programming. 
+							But don't worry, we will start with a basic overview, and illustrate the concepts with many tangible examples. 
+							Let's get started!
+						</p>
+						<section id="concept" data-magellan-target="concept">
+							<h3 class="title" data-section-title>Basics of Inheritance</h3>
+							<div class="content" data-section-content>
+								<blockquote>
+									The purpose of inheritance is to reuse code and enable generic datatypes. 
+								</blockquote>
+								</p>
+								<p>
+									Inheritance allows different classes to obtain the methods and attributes of another class. 
+									It also allows code that manages generic datatypes. 
+								</p>
+								<p>To illustrate the first part, let us consider the following scenario:</p>
+								<p>	
+									We have a class called <code>Shape</code> which has the following methods (implementations not shown):
+<pre><code>//constructors not shown
+//accessor methods
+private int getAreaHelper(){};
+public String getType(){};
+public int getArea(){};
+public int getPerimeter(){};
+</code></pre>
+								</p>
+								<p>
+									Now, say we want to create a new class called <code>Triangle</code>, 
+									and we want it to have the same methods as a <code>Shape</code>, i.e. we want it to have the
+									<code>getArea()</code>, <code>getPerimeter()</code> and <code>getType()</code> functions.
+								</p>
+								<p>
+									Instead of writing copy-pasting the methods into the Triangle class, 
+									we can use the <code>extends</code> keyword as follows:
+									<pre><code>public class Triangle extends Shape{}</code></pre>
+								</p>
+								<p>
+									Now, <code>Triangle</code> has all the public methods and attributes of <code>Shape</code>. 
+									We can test it with some main code:
+<pre><code>public class Triangle extends Shape{
+	public static void main(String[] args){
+		Triangle c = new Triangle();
+		System.out.println(getArea());
+	}
+}
+</code></pre>
+								</p>
+								<p>
+									This will run properly, since <code>Triangle</code> inherits the methods of <code>Shape</code>. 
+									We call the relationship between Triangle and Shape that of <b>child</b> and <b>parent</b>. 
+									The <code>Shape</code> is the parent, and <code>Triangle</code> is the child.
+								</p>
+								<p>
+									<em>Key takeaway: </em> <b>inheritance allows code to be reused.</b>
+								</p>
+								<p class="lead">
+									Inheritance also allows generic datatypes to be created and managed.
+								</p>
+								<p>
+									Consider the previous example with the Triangle and the Shape. 
+									Since <code>Triangle</code> extends <code>Shape</code>, we know that Triangle has all the methods of Shape. 
+									In other words, we know that a <code>Triangle</code> can do <b>everything</b> that a <code>Shape</code> can do.
+									This allows us to do the following in Java:
+								</p>
+								<p>
+<pre><code>Shape s = new Triangle();
+s.getArea();
+</code></pre>
+								</p>
+								<p>
+									We can create a new <code>Triangle</code> and call it a <code>Shape</code>, 
+									since <code>Triangle</code> extends from <code>Shape</code>. 
+									In general, when we create a class and specify its datatype as a parent class, we call this <em>upcasting</em>.
+								</p>
+								<p>
+									This also works when the parent class is not a direct parent. For example, suppose we had the following:
+									<pre><code>public class rightAngleTriangle extends Triangle{}</code></pre>
+									We can create a new <code>rightAngleTriangle</code> and call it a <code>Shape</code>, 
+									since Java knows that all <code>rightAngleTriangle</code> objects can do everything a <code>Triangle</code> does, 
+									and all <code>Triangles</code> can do everything a <code>Shape</code> can do, 
+									thus a <code>rightAngleTriangle</code> can do everything a <code>Shape</code> can do.
+								</p>
+								<p>
+									To put it into code, the following code will work:
+<pre><code>Shape s = new rightAngleTriangle();
+s.getArea();
+</code></pre>
+								</p>
+								<p>
+									<em>Key takeaway: </em><b>Inheritance allows generic datatypes.</b>
+								</p>
+							</div>
+						</section>
+						<section id="implementationDetails" data-magellan-target="implementationDetails">
+							<h3 class="title" data-section-title>Implementation Details</h3>
+							<div class="content" data-section-content>
+								<p>
+									Here are some details about inheritance to be aware of. 
+								</p>
+								<p>
+									To reference any public methods or constructors in the parent class, use the keyword <code>super</code>.
+									For example, if <code>Shape</code> had the following constructor:
+									<pre><code>public Shape(int area, int perimeter){//implementation not shown}</code></pre>
+									If we wanted to call this constructor in the Triangle class, we would write:
+								</p>
+								<p>
+<pre><code>public Triangle(int area, int perimeter){
+	super(area,perimeter);
+}</code></pre>
+								</p>
+								<p>
+									We can also call methods of the parent using <code>super</code>:
+<pre><code>public printArea(){
+	System.out.println(super.getArea());
+}</code></pre>
+								</p>
+								<p>
+									<b>Another detail</b> to be aware of, is that private methods and fields are unaccessable to the child class. 
+									for example, if the <code>Shape</code> class had a private field:
+									<pre><code>private int area;</code></pre>
+									Then methods in the <code>Triangle</code> class cannot access <code>area</code>:
+									<pre><code>return super.area; //would not work</code></pre>
+								</p>
+								<p>
+									<b>Additional detail:</b> parent classes do not inherit from their children. 
+									For example, if <code>Triangle</code> has a method <code>getHypothenusLength</code>:
+									<pre><code>int getHypothenusLength(){//implementation hidden}</code></pre>
+									Then the following code would not work:
+<pre><code>Shape s = new Triangle();
+s.getHypothenusLength(); //will not work
+Triangle t = new Triangle();
+t.getHypothenusLength(); //will work
+</code></pre>
+								</p>
+							</div>
+						</section>
+					</div>
+				</section>
+				<hr />
+				<section id="polymorphism" data-magellan-target="polymorphism">
+					<h2 class="title" data-section-title>Polymorphism</h2>
+					<div class="content" data-section-content>
+						<blockquote>
+							Polymorphism allows use to write different versions of code for the same method.
+						</blockquote>
+						<p>
+							We have already seen polymorphism in practice during our dicussion of Constructors. 
+							Similar to constructors, one method in the same class can have different versions, depending on the parameters.
+							For example, consider the Constructors for <code>Shape</code>:
+						</p>
+						<p>
+<pre><code>public Shape(){//default constructor}
+public Shape(int area, int perimeter){//not shown}
+public Shape(int area, int perimeter, String type){//not shown}
+</code></pre>
+						</p>
+						<p>
+							In this example, we have multiple versions of the same method, namely the constructor. 
+							We call this <em><b>Overloading</b></em>, where we write multiple versions of the same method, 
+							distinguishing between them by their parameters. 
+						</p>
+						<p>
+							We can also overload <em>other methods</em>:
+						</p>
+						<p>
+<pre><code>public class Triangle{
+	public void setBase(int length){}
+	public void setBase(double length){}
+}</code></pre>
+						</p>
+						<p>
+							In this case, we overloaded a <code>setBase()</code> method, switching the parameter types.
+							If we called <code>setBase(10)</code>, it would call the <code>int</code> version of the method.
+							If we called <code>setBase(10.5)</code>, it would call the <code>double</code> version of the method.
+						</p>
+						<p class="lead">
+							The same method can also have different implementations in <b>different classes.</b>
+						</p>
+						<p>
+							Consider the <code>getType()</code> methods. In the <code>Shape</code> class, the implementation could look some 
+							something like this: 
+<pre><code>public String getType(){
+	return "Generic Shape";
+}</code></pre>
+						</p>
+						<p>
+							While the implementation of the same method in <code>Triangle</code> could look like this:
+<pre><code>public String getType(){
+	return "Generic Triangle";
+}</code></pre>
+						</p>
+						<p>
+							Now, the same <code>getType()</code> method is implemented differently in different classes. 
+							This is called <em><b>Overriding</b></em>. The version of an overriden method that is actually called
+							when the program runs is determined at run-time (when the program is run). 
+						</p>
+						<p>
+							For example, if we had this code in the main function:
+<pre><code>Shape t = new Triangle();
+Shape s = new Shape();
+System.out.println(t.getType());
+System.out.println(s.getType());
+</code></pre>
+						</p>
+						<p>
+							The output would be 
+<pre><code>Generic Triangle
+Generic Shape
+</code></pre>
+						</p>
+						<p>
+							When the program is run at run-time, the actual method run when <code>getType()</code> is called on the 
+							variable <code>t</code> is determined by Java. 
+						</p>
+					</div>
+				</section>
+				<hr />
+				<section id="applications" data-magellan-target="applications">
+					<h2 class="title" data-section-title>Applications</h2>
+					<div class="content" data-section-content>
+						<p>
+							Here are some examples of where inheritance and polymorphism can be useful in practice. 
+						</p>
+						<h4>Shapes Example</h4>
+						<p>
+							<b>Requirements:</b> We need to write a function that takes an array of type <code>Shape</code> 
+							and for each <code>Shape</code>, print its type. 
+						</p>
+						<p>
+							<b>Solution:</b> We can loop through each element and use polymorphism to simply print each element's 
+							<code>getType()</code> result. This will work because all shapes have a <code>getType()</code> method.
+							Each child class can then override this method to return their own type. It can be coded as follows:
+<pre><code>public void printTypes(Shape[] shapes){
+	for (int i=0;i &lt; shapes.length; i++){
+		System.out.println(shapes[i].getType());
+	}
+}</code></pre>
+						</p>
+						<h4>Dog Example</h4>
+						<p>
+							<b>Requirements:</b> Say we want to create a bunch of different types of dogs, that can bark and wag their tails. 
+							We want all dogs to wag their tails the same way, but they will bark differently. 
+						</p>
+						<p>
+							<b>Solution:</b> If we represent each dog type as a class, we can take adavantage of inheritance and polymorphism. 
+							We can consider writing a genric <code>wagTail()</code> function that all dogs automatically inherit from their parent class
+							Furthermore, we can override a method, say <code>bark()</code> for each type of dog. 
+							The code might look something like this:
+<pre><code>class Dog{
+	public void bark(){
+		System.out.println("Woof!");
+	}
+	public void wagTail(){
+		System.out.println("Swish, Swish (´ᴥ`)");
+	}
+}
+
+class Collie extends Dog{
+	public void bark(){ //overriding 
+		System.out.println("arf!");
+	}
+	//wagTail() automatically inherited from parent class
+}
+
+class Pug extends Dog{
+	public void bark(){
+		System.out.println("*grumbling pug noises");
+	}
+	//wagTail() automatically inherited from parent class
+}</code></pre>
+						</p>
+						<p>
+							Now if we run the following code:
+<pre><code>public static void main(String[] args){
+	Dog d1 = new Dog();
+	Dog d2 = new Collie();
+	Dog d3 = new Pug();
+	d1.bark();
+	d2.bark();
+	d3.bark();
+	d1.wagTail();
+	d2.wagTail();
+	d3.wagTail();
+}</code></pre>
+						</p>
+						<p>
+							The output is:
+<pre><code>Woof!
+arf!
+*grumbling pug noises
+Swish, Swish (´ᴥ`)
+Swish, Swish (´ᴥ`)
+Swish, Swish (´ᴥ`)
+</code></pre>
+						</p>
+					</div>
+				</section>
+			</div>
+		<div>
+	</div>
+</div>
+
+  </div>
+</div>
+
+<div class="bottomBox">
+	<p class="text-center"><a href="#Top">Return to top</a></p>
+</div>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

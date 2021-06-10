@@ -1,0 +1,361 @@
+
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APCSA</title>
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="assets/highlight/styles/default.css">
+    <script src="assets/highlight/highlight.pack.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+<body>
+<section id="Top">
+</section>
+<div class="topBox">
+</div>
+
+<div class="grid-container">
+	<div class="grid-x">
+		<div class="cell small-12 large-3" data-magellan data-sticky-contianer data-options="marginTop:0"> <!-- Navigation Bar-->
+				<div data-sticky data-options="marginTop:0;">
+					<div class="title-bar" data-responsive-toggle="table-of-contents" data-hide-for="large" data-sticky>
+						<ul class="vertical dropdown menu" data-dropdown-menu data-toggle="table-of-contents">
+							<li>
+								<a href="#">Menu</a>
+							</li>
+						</ul>				
+					</div>
+					<ul class="menu vertical nested" id="table-of-contents">
+						<li><a href="#consolePrinting">Printing to the Console</a></li>
+						<li><a href="#declaringVariables">Declaring Variables</a></li>
+						<ul class="menu vertical nested">
+							<li><a href="#Datatypes">Datatypes</a></li>
+							<li><a href="#Arithmetic">Basic Arthmetic</a></li>
+						</ul>
+						<li><a href="#gettingInput">Getting Input</a></li>
+						<li><a href="#furtherReading">Further Reading</a></li>
+					</ul>
+				</div>
+			</div>
+		<div class="cell large-auto"> <!-- main content-->
+			<div class="sections" data-section>
+				<section id="consolePrinting" data-magellan-target="consolePrinting">
+					<h2 class="title" data-section-title>Getting Input</h2>
+					<div class="content" data-section-content>
+						<p>So you have a basic setup. <em>Now What?</em></p>
+						<p>We do what generations of programmers have done before us: we make a Hello World program.</p>
+						<p>After creating a basic setup on Eclipse, you should have a Java Class file that looks something like this:</p>
+<pre><code>public class Main{
+	public static void main(String[] args){
+		//TODO
+	}
+}</code></pre>
+						<p>We will learn more about what each of these mean later in the course. 
+							For now, let's focus on outputting <code>Hello World!</code> to the console
+						</p>
+						<p>
+							Type this code: 
+							<code>System.out.println("Hello World!");</code>
+							under the <code>//TODO</code> line. If you don't understand what you're typing, don't worry! We will learn more about it later in the course. 
+						</p>
+						<p>
+							For now, your file should look like this:
+<pre><code>public class Main{
+	public static void main(String[] args){
+		//TODO
+		System.out.println("Hello World!");
+	}
+}</code></pre>
+						<b>Note: </b> Don't forget the semicolon at the end of the line!
+						</p>
+						<p>
+						If you run this program in your IDE, you should see:
+						<code>Hello World!</code>
+						in the output. 
+						</p>
+						<p>
+							Ok, that's cool. Now, what if we want to print more complicated messages? let's say, many lines of output.
+							We could try copy-pasting the <code>System.out.println("Hello World!")</code> multiple times, 
+							replacing <code>"Hello World!"</code> with a new line of our message each time:
+<pre><code>public class Main{
+	public static void main(String[] args){
+		//TODO
+		System.out.println("Line 1: to be or not to be");
+		System.out.println("Line 2: that is the question");
+		System.out.println("Line 3: - Shakespeare");
+	}
+}</code></pre>
+						</p>
+						<p>
+							This would work if you ran it in your compiler, but that's a lot of work. Is there a simpler way to do this?
+						</p>
+						<p>
+							The answer, of course, is Yes! We can use this sequence of letters: <code>\n</code> (backslash followed by lowercase letter n)
+							This character signifies for java to start a new line in the output. Take this example:
+<pre><code>public class Main{
+	public static void main(String[] args){
+		//TODO
+		System.out.println("Line 1: to be or not to be\nLine 2: that is the question\nLine 3: - Shakespeare");
+	}
+}</code></pre>
+						</p>
+						<p>
+							This will yield the same output as the previous block of code, however this version is a bit more concise.
+						</p>
+						<p>
+							Here's a tricky situation. What will the following code output:
+							<pre><code>System.out.println("Line 1:\n Line 2:\nLine 3:");</code></pre>
+							The tricky bit to notice is that Line 2 will be preceeded by a space. Be careful about placing spaces in output,
+							as they might alter the formatting of your output. 
+						</p>
+					</div>
+				</section>
+				<hr />
+				<section id="declaringVariables" data-magellan-target="declaringVariables">
+					<h2 class="title" data-section-title>Declaring Variables</h2>
+					<div class="content" data-section-content>
+						<p>
+							A very important feature of Java, and most programming langauges, are variables. 
+							We will use variables a lot in the rest of this course, so make sure to pay attention to this section.
+						</p>
+						<p>
+							To understand variables, consider the following example: 
+							<pre><code>int x = 0;</code></pre>
+							In this code, we declare a variable of <em>type</em> <code>int</code>, <em>name</em> it <code>x</code>, 
+							and assign it the <em>value</em> of <code>0</code>.
+						</p>
+						<p>
+							<b>We can assign x any value we want</b>, as long as it fits the constraints of its 
+							<a href="#Datatypes">datatype</a>
+						</p>
+						<p>
+							For example: we can set x to any of the following:
+<pre><code>int x = 1;
+int x = 21;
+int x = 42069;
+</code></pre>
+						</p>
+						<p>
+							You can even assign omit the assignment, and just declare the variable: 
+<pre><code>int x;</code></pre>
+						</p>
+						<p>
+							<b>We can also name the variable anything we want, </b> for example: </p>
+						<p>
+							<pre><code>int mybeautifulint = 0;</code></pre>
+							Or even <pre><code>int imjustgonnaputrandomstuffhere = 0;</code></pre>
+						</p>
+						<p>
+							Although Java will accept any name, it makes sense to make the names meaningful and easy to read. 
+							For example: 
+<pre><code>int length = 3;
+int width = 2;
+int area = 6;
+</code></pre>
+						</p>
+						<p>
+							Another useful convention to follow is to camel-case your variables. 
+							In camel-case, the first letter of each word is capitalized.
+							For example, if we had a variable that represents the minimum size of a skyscraper, we can use:
+							<pre><code>int minimumSkyscraperSize = 100;</code></pre>
+							Here are some more examples of camel-case:
+<pre><code>int smallLength = 3;
+int smallWidth = 2;
+int smallArea = 6;
+int largeLength = 20;
+int largeWidth = 20;
+int largeArea = 400;
+</code></pre>
+						</p>
+						<p>
+							The final thing to learn about for variables, are datatypes.
+						</p>
+						<section id="Datatypes" data-magellan-target="Datatypes">
+							<h4 class="title" data-section-title>Datatypes</h4>
+							<p><b>All variables in Java must have a datatype specified.</b> 
+								In our previous examples, we always used the <code>int</code> datatype.
+							</p>
+							<p>
+								However, there are many other datatypes in Java, such as <code>double</code>, <code>char</code> and <code>String</code>.
+								To use these, replace <code>int</code> with the desired datatype. For example: 
+							</p>
+							<p>
+<pre><code>double d = 0.1;
+char c = 'x';
+String s = "hello world!";
+</code></pre>
+							</p>
+							<p><code>char</code> can only store a single ascii character. 
+								You have to wrap the value you give it in single quotations (<code>'</code>). For example:
+<pre><code>char c = 'a';
+char d = 'z';
+char e = '1';
+char f = 'A';
+char n = '\n';
+</code></pre>								
+							</p>
+							<p>are all valid, but
+<pre><code>char g = '12';
+char h = 'ab';
+char i = '.ac.';
+char j = "abc";
+</code></pre>
+</p>
+							<p>will not work.</p>
+							<p><code>int</code> can store any integer (number without decimals). 
+								An <code>int</code> can store any integer, as long as it's greater than or equal to 
+								<code class="code-inline">-2147483648</code> and smaller than or equal to <code class="code-inline">2147483647</code>
+							</p>
+							<p>
+								A <code>String</code> can store any sequence of <code>char</code> datatypes. 
+								Their values are wrapped in double-quotes (<code>"</code>). For example:
+							</p>
+							<p>
+<pre><code>String s = "Hello World!";
+String a = "Ipsum Lorem 123\n";
+</code></pre>
+							Are all valid.
+							</p>
+							<p>
+								Don't worry too much about these constraints, they will become familiar with practice. 
+								Later in the course, we will learn much more about datatypes in Java, including all their differences. 
+								For now, just remember these 2 datatypes:
+							</p>
+							<p><code>int</code> and <code>String</code>.</p>
+						</section>
+						<section id="Arithmetic">
+							<h4 class="title" data-section-title>Basic Arithmetic with Variables</h4>
+							<div class="content" data-section-content>
+								<p>
+									One final note about variables, is that we can do basic arithmetic with them. Consider this code:
+<pre><code>int smallLength = 3;
+int smallWidth = 2;
+int smallArea = 6;
+int largeLength = 20;
+int largeWidth = 20;
+int largeArea = 400;</code></pre>
+								</p>
+								<p>
+									Instead of doing the calculations of the area in our head, we can use the <code>*</code> operator to multiply variables:
+<pre><code>int smallLength = 3;
+int smallWidth = 2;
+int smallArea = smallLength * smallWidth;
+int largeLength = 20;
+int largeWidth = 20;
+int largeArea = largeLength * largeWidth;</code></pre>
+								</p>
+								<p>
+									We can also multiply values directly, without variables:
+<pre><code>int volume = 2*3*10</code></pre>
+									And do the same with addition (<code>+</code>), subtraction (<code>-</code>), and division (<code>/</code>):
+<pre><code>int d1 = 5+16;
+int d2 = 31;
+int totalDistance = d1+d2;
+int triangleArea = (5+7)/2;
+int age = 2021-2004;
+</code></pre>
+								</p>
+								<p>
+									Notice that the order of operations is the same in Java as in normal mathematics. 
+									For example, the value of <code>10+20/2</code> is 20, while the value of
+									<code>(10+20)/2</code> is 15
+								</p>
+							</div>
+						</section>
+					</div>
+				</section>
+				<hr />
+				<section id="gettingInput" data-magellan-target="gettingInput">
+					<h2 class="title" data-section-title>Getting Input</h2>
+					<div class="content" data-section-content>
+						<p>Alright, that was a lot content, let's do something cool with what we learned ... let's interact with the user.</p>
+						<p>
+							First, let's open up a brand new Java file. To get user input, we will add the following line of code to the top of our file:
+<pre><code>import java.util.Scanner;</code></pre>
+						</p>
+						<p>
+							This tells Java to bring some external code (in this case, <code>java.util.Scanner</code>) into the program, so that we can use it.
+						</p>
+						<p>
+							Now, we can use Scanner using the following code: 
+<pre><code>Scanner sc = new Scanner(System.in);</code></pre>
+						</p>
+						<p>
+							Notice that this is similar to declaring variables. In this case, the datatype is <code>Scanner</code>, 
+							and we are assigning it the value of <code>new Scanner(System.in)</code>. For now, don't worry about this part means.
+							It's enough to know that this will allow us to get input from the console, through the <code>sc</code> variable.
+						</p>
+						<p>Your code should now look something like this:</p>
+<pre><code>import java.util.Scanner;
+public class Main{
+	public static void main(String[] args){
+		//TODO
+		Scanner sc = new Scanner(System.in);
+	}
+}</code></pre>
+					<p>
+						To use the <code>Scanner</code>, we use the variable <code>sc</code> as follows:
+<pre><code>String s = sc.next();</code></pre>
+					</p>
+					<p>
+						This stores the user input as a <code>String</code> into String <code>s</code>.
+						We can print the value of s using <pre><code>System.out.println(s);</code></pre>
+					</p>
+					<p>
+						We can also get an <code>int</code> from the console input as follows:
+<pre><code>int in = sc.nextInt();</code></pre>
+					</p>
+					<p>
+						Using everything we learned and putting it all together, 
+						we can create a simple program to get the user's name and age, and output it them:
+					</p>
+					<p>
+<pre><code>import java.util.Scanner;
+public class Main{
+	public static void main(String[] args){
+		//TODO
+		Scanner sc = new Scanner(System.in);
+		System.out.println("What is your name?");
+		String name = sc.next();
+		System.out.println("What is your age?");
+		int age = sc.nextInt();
+		System.out.println("Hello!");
+		System.out.println(name);
+		System.out.println("You are: ");
+		System.out.println(age); //we can also output int datatypes through System.out
+		System.out.println("years old!");
+	}
+}</code></pre>
+					</p>
+					<p>
+						Notice that besides <code>String</code>s, we can also output datatypes such as <code>int</code>. 
+						In fact, all datatypes are printable through <code>System.out</code> (we will learn more about why later).
+					</p>
+					</div>
+				</section>
+				<hr />
+				<section id="furtherReading">
+					<h2>Further reading</h2>
+					<p>If you want to challenge yourself to learn more about what we just covered, here are some helpful resources to start:</p>
+					<ul>
+						<li><a href="https://www.tutorialspoint.com/What-is-dot-operator-in-Java">Dot operator</a></li>
+					</ul>
+				</section>
+			</div>
+		<div>
+	</div>
+</div>
+
+  </div>
+</div>
+
+<div class="bottomBox">
+	<p class="text-center"><a href="#Top">Return to top</a></p>
+</div>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>
